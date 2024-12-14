@@ -93,7 +93,7 @@ Solana Public Key: 7zjLEhEEazFnjoq13cQ3LABLhR69tXbJQqTBunBazEUP
 This command allows you to see the balance of a public address.
 
 ```bash
-cargo run -- balance_by_pubkey DXGaLHJ2w4Q4Jer5gH6qcscKdjNpP8gPadjdRY7Tm3D2
+cargo run -- balance_by_pubkey 7zjLEhEEazFnjoq13cQ3LABLhR69tXbJQqTBunBazEUP
 ```
 
 Example of result:
@@ -101,3 +101,10 @@ Example of result:
 ```bash
 Balance: 0.010000000 SOL (10000000 lamports)
 ```
+
+
+## Solscan For This Test
+
+[Phantom](https://solscan.io/account/DXGaLHJ2w4Q4Jer5gH6qcscKdjNpP8gPadjdRY7Tm3D2)
+
+[BIP39 Solana Wallet](https://solscan.io/account/7zjLEhEEazFnjoq13cQ3LABLhR69tXbJQqTBunBazEUP)
