@@ -7,9 +7,11 @@
 This **BIP39 Solana Wallet** is developed by [Stephen Damian](https://github.com/s-damian).
 
 > A Desktop Solana Wallet developed in Rust.
+
 > #Rust 🦀 #Solana #SVM #BIP39 #Wallet
 
 Status: Under development 🚧
+
 This V1 is only usable in command line. The graphical interface (GUI) has not yet been developed.
 
 
