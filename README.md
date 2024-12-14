@@ -1,19 +1,24 @@
 # BIP39 Solana Wallet
 
-> #Rust 🦀 #Solana #SVM #BIP39 #Wallet
-
 [![Tests](https://github.com/bip39-solana-wallet/bip39-solana-wallet/actions/workflows/tests.yml/badge.svg)](https://github.com/bip39-solana-wallet/bip39-solana-wallet/actions/workflows/tests.yml)
 [![Static Analysis](https://github.com/bip39-solana-wallet/bip39-solana-wallet/actions/workflows/static-analysis.yml/badge.svg)](https://github.com/bip39-solana-wallet/bip39-solana-wallet/actions/workflows/static-analysis.yml)
 [![License](https://img.shields.io/badge/License-MIT-blue)](https://github.com/bip39-solana-wallet/bip39-solana-wallet/blob/main/LICENSE)
 
-This **BIP39 Solana Wallet** is developed by [Stephen Damian](https://github.com/s-damian)
+This **BIP39 Solana Wallet** is developed by [Stephen Damian](https://github.com/s-damian).
+
+> A Desktop Solana Wallet developed in Rust.
+> #Rust 🦀 #Solana #SVM #BIP39 #Wallet
+
+Status: Under development 🚧
+This V1 is only usable in command line. The graphical interface (GUI) has not yet been developed.
+
 
 
 ## Feature Summary
 
 | Functionality | Description | Command |
 |---------------|-------------|---------|
-| [Generate Mnemonic](#generate-mnemonic) | Creates a new mnemonic phrase (12 words, with an optional passphrase). | **`generate_seed`** |
+| [Generate Mnemonic](#generate-mnemonic) | Creates a new mnemonic phrase (12 words, with an optional passphrase). | `generate_seed` |
 | [Recover Keypair](#recover-keypair) | Recover keypair and seed from a mnemonic phrase. | `recover_seed <RECOVERY_PHRASE>` |
 | [Send SOL (lamports)](#send-sol-lamports) | Send SOL to a recipient address (sign outgoing transaction). | `send <RECIPIENT_PUBKEY> <AMOUNT_IN_LAMPORTS>` |
 | [Public Key Display](#get-public-key) | Retrieves and displays the public key from the locally stored keypair. | `pubkey` |
