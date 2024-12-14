@@ -6,14 +6,22 @@
 
 This **BIP39 Solana Wallet** is developed by [Stephen Damian](https://github.com/s-damian).
 
-> A Desktop Solana Wallet developed in Rust.
+> A Desktop Solana Wallet developed in Rust 🦀
 
-> #Rust 🦀 #Solana #SVM #BIP39 #Wallet
+🚧 Status: Under development (the GUI has not yet been developed).
 
-Status: Under development 🚧
+### Prerequisites
 
-This V1 is only usable in command line. The graphical interface (GUI) has not yet been developed.
+- **Rust** `>= 1.75.0` (last tested: `1.83.0`).
+- **Cargo** (Rust's package manager).
 
+
+### Roadmap
+
+- ✅ Implemented command-line interface (CLI).
+- ✅ Conducted testing: Functional and unit tests completed.
+- ⬜ Development of graphical user interface (GUI) pending.
+- ⬜ Pending addition of support for SPL tokens (JUP, ORCA, USDC, etc.).
 
 
 ## Feature Summary
