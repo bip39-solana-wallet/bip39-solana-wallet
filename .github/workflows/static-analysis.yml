@@ -1,0 +1,34 @@
+name: Static Analysis
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  clippy:
+    name: Run Clippy
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # Rust releases: https://releases.rs/
+        rust-version: [1.75.0, 1.83.0]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust-version }}
+          profile: minimal
+          override: true
+          components: clippy
+
+      - name: Analyze
+        run: cargo clippy

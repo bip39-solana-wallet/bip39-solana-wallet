@@ -1,0 +1,63 @@
+name: Rust Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build_and_test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        # Rust releases: https://releases.rs/
+        rust-version: [1.75.0, 1.83.0]
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: ${{ matrix.rust-version }}
+          profile: minimal
+          override: true
+
+      - name: Cache Cargo dependencies
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+
+      - name: Copy .env.testing.example to .env.testing
+        run: cp .env.testing.example .env.testing
+
+      # Étape pour charger les variables d'environnement à partir de .env.testing
+      - name: Load environment variables
+        run: |
+          grep -v '^#' .env.testing >> $GITHUB_ENV
+
+      - name: Debug Environment
+        run: |
+          echo "Current directory: $(pwd)"
+          echo "PATH: $PATH"
+          echo "Rust version: $(rustc --version)"
+          echo "Cargo version: $(cargo --version)"
+          echo "TEST_MODE: ${TEST_MODE}"
+          echo "NB_DERIVATIONS: ${NB_DERIVATIONS}"
+          echo "RPC_URL: ${RPC_URL}"
+
+      - name: Build with Cargo
+        run: cargo build --verbose
+
+      - name: Run Rust Tests
+        run: cargo test --verbose -- --nocapture

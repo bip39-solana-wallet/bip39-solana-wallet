@@ -1,0 +1,5 @@
+/storage
+/target
+.env
+.env.testing
+Cargo.lock
