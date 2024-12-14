@@ -14,10 +14,10 @@ This **BIP39 Solana Wallet** is developed by [Stephen Damian](https://github.com
 | Functionality | Description | Command |
 |---------------|-------------|---------|
 | [Generate Mnemonic](#generate-mnemonic) | Creates a new mnemonic phrase (12 words, with an optional passphrase). | `generate_seed` |
-| [Recover Keypair](#recover-keypair) | Recover keypair and seed from a mnemonic phrase. | `recover_seed` |
-| [Send SOL (lamports)](#send-sol-lamports) | Send SOL to a recipient address (sign outgoing transaction). | `send` |
+| [Recover Keypair](#recover-keypair) | Recover keypair and seed from a mnemonic phrase. | `recover_seed <RECOVERY_PHRASE>` |
+| [Send SOL (lamports)](#send-sol-lamports) | Send SOL to a recipient address (sign outgoing transaction). | `send <RECIPIENT_PUBKEY> <AMOUNT_IN_LAMPORTS>` |
 | [Public Key Display](#get-public-key) | Retrieves and displays the public key from the locally stored keypair. | `pubkey` |
-| [Get Balance](#get-balance-by-public-key) | Get balance (in SOL and in lamports) by public key. | `balance_by_pubkey` |
+| [Get Balance](#get-balance-by-public-key) | Get balance (in SOL and in lamports) by public key. | `balance_by_pubkey <PUBKEY>` |
 
 
 ## Commands
