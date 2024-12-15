@@ -119,6 +119,13 @@ Balance: 0.010000000 SOL (10000000 lamports)
 
 ## Solscan For This Test
 
-[Phantom](https://solscan.io/account/DXGaLHJ2w4Q4Jer5gH6qcscKdjNpP8gPadjdRY7Tm3D2)
+[Phantom Wallet](https://solscan.io/account/DXGaLHJ2w4Q4Jer5gH6qcscKdjNpP8gPadjdRY7Tm3D2)
 
 [BIP39 Solana Wallet](https://solscan.io/account/7zjLEhEEazFnjoq13cQ3LABLhR69tXbJQqTBunBazEUP)
+
+
+## Some Interesting Links
+
+- **BIP39**: [Learn more](https://github.com/bitcoin/bips/blob/master/bip-0039.mediawiki).
+- **BIP44**: [Learn more](https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki).
+- **SLIP44**: [Learn more](https://github.com/satoshilabs/slips/blob/master/slip-0044.md).
