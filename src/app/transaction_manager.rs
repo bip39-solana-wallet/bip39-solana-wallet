@@ -1,5 +1,7 @@
 use crate::config::wallet_config::WalletConfig;
 use crate::solana::transaction::SolanaTransaction;
+use crate::solana::spl_token::SolanaSplToken;
+
 use clap::ArgMatches;
 use solana_sdk::{pubkey::Pubkey, signature::read_keypair_file};
 use std::str::FromStr;
@@ -43,6 +45,25 @@ impl TransactionManager {
         .map_err(Into::into)
     }
 
+
+    pub fn send_spl_token(&self, matches: &ArgMatches) -> Result<(), Box<dyn std::error::Error>> {
+        let sender_keypair = read_keypair_file(&self.config.keypair_path)
+            .map_err(|_| "Failed to read keypair from file")?;
+        let recipient_pubkey = self.get_pubkey_from_matches(matches)?;
+        let token_address = self.get_token_address_from_matches(matches)?;
+        let amount = self.get_amount_from_matches(matches)?;
+
+        // Envoi via le réseau Solana.
+        SolanaSplToken::send_spl_tokens(
+            &self.config.rpc_url,
+            &sender_keypair,
+            &recipient_pubkey,
+            &token_address,
+            amount,
+        ).map_err(Into::into)
+    }
+
+
     /// Extrait l'adresse publique du destinataire à partir des arguments de ligne de commande.
     ///
     /// Arguments:
@@ -58,6 +79,16 @@ impl TransactionManager {
             .get_one::<String>("RECIPIENT")
             .ok_or("Recipient required")?;
         Pubkey::from_str(recipient).map_err(|_| "Invalid public key format".into())
+    }
+
+    fn get_token_address_from_matches(
+        &self,
+        matches: &ArgMatches,
+    ) -> Result<Pubkey, Box<dyn std::error::Error>> {
+        let token_address = matches
+            .get_one::<String>("TOKEN_ADDRESS")
+            .ok_or("Token address required")?;
+        Pubkey::from_str(token_address).map_err(|_| "Invalid token address format".into())
     }
 
     /// Extrait le montant des lamports à envoyer à partir des arguments de ligne de commande.

@@ -3,3 +3,5 @@ pub mod generate_seed_test;
 
 pub mod pubkey_test;
 pub mod recover_seed_test;
+
+pub mod spl_test;
