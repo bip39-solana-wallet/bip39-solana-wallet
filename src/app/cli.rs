@@ -22,6 +22,7 @@ impl AppCli {
             .subcommand(self.configure_send())
             .subcommand(self.configure_pubkey())
             .subcommand(self.configure_balance_by_pubkey())
+            .subcommand(self.configure_sending_spl_token())
     }
 
     fn configure_generate_seed(&self) -> Command {
@@ -69,11 +70,33 @@ impl AppCli {
             )
     }
 
+    fn configure_sending_spl_token(&self) -> Command {
+        Command::new("sending_spl_token")
+            .about("Sending spl token")
+            .arg(
+                Arg::new("RECIPIENT")
+                    .help("Recipient public key")
+                    .required(true)
+
+            ).arg(
+                Arg::new("TOKEN_ADDRESS")
+                    .help("Token address")
+                    .required(true)
+
+            ).arg(
+                Arg::new("AMOUNT")
+                    .help("Amount to send")
+                    .required(true)
+
+            )
+    }
+
     pub fn handle_matches(&self, matches: ArgMatches) {
         match matches.subcommand() {
             Some(("generate_seed", _)) => self.handle_generate_seed(),
             Some(("recover_seed", sub_matches)) => self.handle_recover_seed(sub_matches),
             Some(("send", sub_matches)) => self.handle_send(sub_matches),
+            Some(("sending_spl_token", sub_matches)) => self.handle_sending_spl_token(sub_matches),
             Some(("pubkey", _)) => self.pubkey(),
             Some(("balance_by_pubkey", sub_matches)) => self.handle_balance_by_pubkey(sub_matches),
             _ => println!("Unknown command."),
@@ -113,6 +136,14 @@ impl AppCli {
     fn handle_send(&self, sub_matches: &ArgMatches) {
         let transaction_manager = TransactionManager::new(self.config.clone());
         match transaction_manager.send_transaction(sub_matches) {
+            Ok(_) => println!("Transaction sent successfully!"),
+            Err(e) => println!("Failed to send transaction: {}", e),
+        }
+    }
+
+    fn handle_sending_spl_token(&self, sub_matches: &ArgMatches) {
+        let transaction_manager = TransactionManager::new(self.config.clone());
+        match transaction_manager.send_spl_token(sub_matches) {
             Ok(_) => println!("Transaction sent successfully!"),
             Err(e) => println!("Failed to send transaction: {}", e),
         }
